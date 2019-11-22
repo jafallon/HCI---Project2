@@ -1,6 +1,7 @@
 # HCI---Project2
 
 Team Members: James Fallon, Zoya Shaikh, Haroon Saeed
+
 Roles:
 James Fallon - Build/train a model usingTensorFlow model for rock, paper, scissors. Implment the main gameplay.
 Zoya Shaikh - Develop the frontend of the game UI/ reactive stimuli. ( Top Half )
