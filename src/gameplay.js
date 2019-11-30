@@ -1,5 +1,18 @@
+<script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+
+
 
 let timer = 5
+
+class Main{
+    // Constructor Class for initialized Variables
+    constructor(){
+
+        this.playing = false;
+        this.currentMove = 0;
+    }
+
+}
 
 function start(){
 
@@ -10,6 +23,12 @@ function start(){
 
 
 }
+
+/*
+function determineRes(){
+    if()
+}
+*/
 
 function initiate(){
 

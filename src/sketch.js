@@ -80,4 +80,10 @@ function cameraFunc() {
   capture.size(320, 240);
 }
 
+function timer(){
+  // Take an input as a parameter 
+
+  
+
+}
 
