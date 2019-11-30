@@ -1,5 +1,7 @@
 let img;
 let capture;
+
+
 function setup() {
   createCanvas(1425, 768);
   img = loadImage('images/brick-bg (1).jpg');
@@ -77,3 +79,5 @@ function cameraFunc() {
   capture = createCapture(VIDEO);
   capture.size(320, 240);
 }
+
+
