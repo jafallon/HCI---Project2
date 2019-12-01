@@ -1,19 +1,115 @@
 let img;
 let capture;
+let camera;
+let load = "Loading...";
+let predict;
+let model;
+let tem;
+
+let winIMG; // = loadImage("Path");
+let loseIMG; // = loadImage("Path");
+let drawIMG; // = loadImage("Path");
+
+let CPUPick;
+let UserPick;
+
+let count = 5;
+
+function preload(){
+  predict = ml5.imageClassifier(model.json);
+
+}
 
 
 function setup() {
   createCanvas(1425, 768);
   img = loadImage('images/brick-bg (1).jpg');
-  cameraFunc();
-  //capture = createCapture(VIDEO);
-  //capture.size(320, 240);
+  camera = createCapture(VIDEO);
+  camera.hide();
+  //camera = createCapture(VIDEO);
+  //camera.size(320, 240);
+
+  predictVideo();
+
 }
 
-function draw() {
-  image(img, 0, 0, 1435, 768);
+function predictVideo(){
+  predict.classify(camera, prediction)
+}
 
-  image(capture, 285, 160, 280, 340);
+function derRPSRes(){
+}
+
+function determineRPS(){
+
+  // Game logic
+
+  // User Rock
+  if(UserPick == "rock"){
+    if(CPUPick == "scissors"){
+      return win;
+    }
+    if(CPUPick == "paper"){
+      return lose;
+    }
+    else{
+      return draw;
+    }
+  }
+  
+  // User Scissors
+  if(UserPick == "scissors"){
+    if(CPUPick == "paper"){
+      return win;
+    }
+    if(CPUPick == "rock"){
+      return lose;
+    }
+    else{
+      return draw;
+    }
+  }
+
+  // User Paper
+  if(UserPick == "paper"){
+    if(CPUPick == "rock"){
+      return win;
+    }
+    if(CPUPick == "scissors"){
+      return lose;
+    }
+    else{
+      return draw;
+    }
+  }
+}
+
+
+function prediction(results){
+  // Countdown here
+
+  if(!finalRes){
+    label = results[0].label;
+  }
+
+  count = 0;  // Temp
+  
+  if(count == 0){
+
+    UserPick = label;
+    
+
+    tem = determineRPS();
+
+  }
+  predictVideo();
+}
+
+
+function draw() {
+  image(img, 0, 0, 1235, 768);
+
+  image(camera, 300, 160, 280, 340);
 
   //menu boxes
   menuShape(40, 635, 1352, 100);
@@ -75,15 +171,11 @@ function healthBar(a, b, c, d) {
   rect(a, b, c, d);
 }
 
-function cameraFunc() {
-  capture = createCapture(VIDEO);
-  capture.size(320, 240);
-}
 
 function timer(){
   // Take an input as a parameter 
 
-  
+
 
 }
 
