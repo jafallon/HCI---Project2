@@ -6,6 +6,7 @@ let predict;
 let model;
 let timer = 10;
 let tem;
+var score= 0;
 
 let winIMG; // = loadImage("Path");
 let loseIMG; // = loadImage("Path");
@@ -113,9 +114,11 @@ function draw() {
 
   image(camera, 300, 160, 280, 340);
   
+  fill(255);
+  text("score = " + score, 500,50);
+  
   textSize(75);
   text(timer, width/3, height/3);
-  
   
   if (frameCount % 60 == 0 && timer > 0) { 
     timer --;
