@@ -7,6 +7,7 @@ let model;
 let timer = 10;
 let tem;
 var score= 0;
+var cpuscore= 0;
 
 let winIMG; // = loadImage("Path");
 let loseIMG; // = loadImage("Path");
@@ -114,6 +115,12 @@ function draw() {
 
   image(camera, 300, 160, 280, 340);
   
+  boxIcon(510, 40, 135, 30);
+  boxIcon(510, 70, 135, 30);
+
+  icon('Score='+score, 520, 60, 20);
+  icon('CPU Score='+cpuscore, 515, 90, 20);
+
   fill(255);
   text("score = " + score, 500,50);
   
