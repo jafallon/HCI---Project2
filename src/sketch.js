@@ -111,6 +111,14 @@ function draw() {
 
   image(camera, 300, 160, 280, 340);
 
+  button = createImg('https://i.imgur.com/j71bxyg.png');
+  button.position(1330,50);
+  //button.mousePressed(settings);
+  
+  instruction = createImg('https://i.imgur.com/KiYAJ1K.png');
+  instruction.position(1300,50); document.getElementById("instruction").addEventListener("click",instruct);
+  instruction.mousePressed(instruct);
+
   //menu boxes
   menuShape(40, 635, 1352, 100);
   menuShape(40, 635, 162, 100);
@@ -179,3 +187,6 @@ function timer(){
 
 }
 
+function instruct(){
+  alert("Welcome!\n 1. Place hand in front of the camera to make your move. \n 2. Camera predicts your move when the timer reaches to 0. \n 3.You compete against the computer. \n 4. 2 out of 3 wins");
+}
