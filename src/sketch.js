@@ -4,6 +4,7 @@ let camera;
 let load = "Loading...";
 let predict;
 let model;
+let timer = 10;
 let tem;
 
 let winIMG; // = loadImage("Path");
@@ -111,7 +112,18 @@ function draw() {
   image(img, 0, 0, 1235, 768);
 
   image(camera, 300, 160, 280, 340);
-
+  
+  textSize(75);
+  text(timer, width/3, height/3);
+  
+  
+  if (frameCount % 60 == 0 && timer > 0) { 
+    timer --;
+  }
+  if (timer == 0) {
+    text("DETECTED", width/2, height*0.5);
+  }
+  
   button = createImg('https://i.imgur.com/j71bxyg.png');
   button.position(1330,50);
   //button.mousePressed(settings);
@@ -180,13 +192,6 @@ function healthBar(a, b, c, d) {
   rect(a, b, c, d);
 }
 
-
-function timer(){
-  // Take an input as a parameter 
-
-
-
-}
 
 function instruct(){
   alert("Welcome!\n 1. Place hand in front of the camera to make your move. \n 2. Camera predicts your move when the timer reaches to 0. \n 3.You compete against the computer. \n 4. 2 out of 3 wins");
