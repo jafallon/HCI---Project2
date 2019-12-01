@@ -107,6 +107,7 @@ function prediction(results){
 
 
 function draw() {
+  background(60,60,60);
   image(img, 0, 0, 1235, 768);
 
   image(camera, 300, 160, 280, 340);
