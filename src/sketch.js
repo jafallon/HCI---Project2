@@ -14,6 +14,10 @@ let countdownStarted = false;
 
 let countdownTimer;
 
+let begin = true;
+let uscore = 3;
+let cscore =3;
+
 
 let img;
 let capture;
@@ -26,8 +30,9 @@ let tem;
 var score= 0;
 var cpuscore= 0;
 
-let Uhealth = 3;
-let AIhealth =3;
+let temscore =0;
+let temcpuscore = 0;
+
 
 let winIMG; // = loadImage("Path");
 let loseIMG; // = loadImage("Path");
@@ -38,7 +43,8 @@ let UserPick;
 
 let count = 5;
 
-
+var Utemx = 120;
+var Ctemx = 120;
 
 
 var screen = 0;
@@ -134,6 +140,8 @@ function gotResults(error, results) {
     countdownTimer = setInterval(decrementCountdown, 1000);
   }
   // Store the label and classify again!
+  
+  // finalResult = null;
   if (!finalResult) {
     label = results[0].label;
 
@@ -150,9 +158,13 @@ function gotResults(error, results) {
       } else {
         computerSelectedRPS = "scissors";
       }
+      
 
       finalResult = determineRpsResult();
+      countdown = 5;
     }
+    
+    
     classifyVideo();
   }
 }
@@ -173,6 +185,7 @@ function draw() {
   	gameOn()
   }
 }
+
 
 function gameOn()
 {
@@ -196,7 +209,6 @@ function gameOn()
   instruction.position(1300,50); document.getElementById("instruction").addEventListener("click",instruct);
   instruction.mousePressed(instruct);
   
-    let emoji = rpsEmoji(!finalResult ? label : userSelectedRPS);
 
   //menu boxes
   menuShape(40, 635, 1352, 100);
@@ -215,11 +227,14 @@ function gameOn()
   icon('Paper', 407, 690, 20);
   icon('Scissors', 565, 690, 20);
 
-  //health for Player 1
+  //health for User
   icon('Health', 90, 660, 20);
   fill('grey');
   rect(60, 690, 120, 20);
-  healthBar(60, 690, 120, 20);
+  UhealthBar(60, 690, 120, 20);
+  
+  
+  
 
   //all the box icons for player 2
   boxIcon(772, 647, 80, 80);
@@ -231,17 +246,18 @@ function gameOn()
   icon('Paper', 955, 690, 20);
   icon('Scissors', 1129, 690, 20);
 
-  //health for Player 2
+  //health for CPU
   icon('Health', 1280, 660, 20);
   fill('grey');
   rect(1252, 690, 120, 20);
+  
 
-  healthBar(1252, 690, 80, 20);
+  ChealthBar(1252, 690, 120, 20);
 
-  icon('Score='+score, 520, 60, 20);
-  icon('CPU Score='+cpuscore, 515, 90, 20);
+  icon('Score='+temcpuscore, 520, 60, 20);
+  icon('CPU Score='+temscore, 515, 90, 20);
   fill(255);
-  text("score = " + score, 500,50);
+  // text("score = " + score, 500,50);
   
   textSize(75);
   // Pick an emoji
@@ -251,43 +267,133 @@ function gameOn()
   textAlign(CENTER, CENTER);
   fill(255);
   textSize(128);
-  text(emoji, 96, 128);
+  
+  //let i;
+ // for(i = 0; i <1; i++){
+    
+    let emoji = rpsEmoji(!finalResult ? label : userSelectedRPS);
+    text(emoji, 96, 128);
+    
 
   // Draw the countdown, but only if it's started
-  if (countdownStarted) {
-    let secondEmoji = ""
-    if (computerSelectedRPS == null) {
-      secondEmoji = countdown
-    } else {
-      secondEmoji = rpsEmoji(computerSelectedRPS)
+    if (countdownStarted) {
+      let secondEmoji = ""
+      if (computerSelectedRPS == null) {
+        
+        
+       // secondEmoji = countdown
+      } else {
+        secondEmoji = rpsEmoji(computerSelectedRPS)
 
+      }
+      text(countdown, 200, height / 2)
+      // text(secondEmoji, 96, 40)
     }
-    text(secondEmoji, 96, height / 2)
-  }
 
-  if (finalResult) {
-    textSize(32);
-    text(finalResult, width / 2, height - 16)
-  }
-
-  
-
-  if (finalResult) {
-    switch (finalResult) {
-      case "victory":
-        label = "victory!";
-        break;
-      case "defeat":
-        label = "defeat";
-        break;
-      default:
-        label = "tie";
+    /*
+    if (finalResult) {
+      
     }
+    */
+    
+    
+    if (finalResult) {
+      switch (finalResult) {
+        case "victory":
+          label = "victory!";
+          Ctemx = Ctemx- 40;
+          cscore = cscore -1;
+
+          ChealthBar(60, 690, 80, 20);
+          finalResult = null;
+          break;
+        case "loss":
+          label = "loss";
+          Utemx = Utemx-40;
+          uscore = uscore -1;
+          UhealthBar(60, 690, 80, 20);
+          finalResult = null;
+          
+          break;
+        case "tie":
+          label = "tie";
+        
+         finalResult = null;
+          break;
+      }
+
+
+  }
+  
+    
+  
+  
+
+  textSize(32);
+  text(label, width / 2, height - 16)
+    
+  if(uscore == 0|| cscore == 0){
+    
+    // End condition
+    //begin = false;
+    
+    if(uscore == 0){
+      // User wins
+      temscore = temscore+1;
+      uscore = 3;
+      
+    }
+    if(cscore == 0){
+      // User loses
+      temcpuscore = temcpuscore+1;
+      cscore =3;
+      
+    }
+    
+    
+    
+  }
+  
+    
+  
+  
+  if(countdown == 0){
+    
+    emoji = rpsEmoji(!finalResult ? label : userSelectedRPS);
   }
   
   
+
 
 }
+
+
+function readScore(a, b){
+  
+  if( a == 0 ){
+    UhealthBar(60, 690, 0, 20);
+  }
+  if( a == 1 ){
+    UhealthBar(60, 690, 40, 20);
+  }
+  if( a == 2 ){
+    UhealthBar(60, 690, 80, 20);
+  }
+  if( b == 2){
+    ChealthBar(1252, 690, 80, 20);
+  }
+  if( b == 1){
+    ChealthBar(1252, 690, 40, 20);
+  }
+  if(b == 0){
+    ChealthBar(1252, 690, 0, 20);
+  }
+  else{
+    // Continue game
+  }
+
+}
+
 
 function menuShape(a, b, c, d) {
   noFill();
@@ -307,7 +413,13 @@ function icon(a, b, c, d) {
   textSize(d);
 }
 
-function healthBar(a, b, c, d) {
+function UhealthBar(a, b, c, d) {
+  fill('green');
+  stroke('white');
+  rect(a, b, c, d);
+}
+
+function ChealthBar(a, b, c, d) {
   fill('green');
   stroke('white');
   rect(a, b, c, d);
