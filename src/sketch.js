@@ -35,6 +35,13 @@ let UserPick;
 
 let count = 5;
 
+
+
+
+var screen = 0;
+var y=-20;
+var x=200;
+
 // STEP 1: Load the model!
 function preload() {
   classifier = ml5.imageClassifier(modelURL + 'model.json');
@@ -42,11 +49,13 @@ function preload() {
 
 function setup() {
   createCanvas(1425, 768);
+  img = loadImage('img.jpg');
   // Create the video
   video = createCapture(VIDEO);
   video.hide();
 
   classifyVideo();
+  
 }
 
 function classifyVideo() {
@@ -151,13 +160,26 @@ function gotResults(error, results) {
   
 
 
+
 function draw() {
-  background(60,60,60);
+    image(img, 0, 0, 1435, 768);
+
+  if(screen == 0){
+    startScreen()
+  }else if(screen == 1){
+  	gameOn()
+  }
+}
+
+function gameOn()
+{
+ // background(60,60,60);
+  image(img, 0, 0, 1435, 768);
 
   // Draw the video
   image(video, 300, 160, 280, 340);
 
-    //image(img, 0, 0, 800, 600);
+   // image(img, 0, 0, 800, 600);
 
   //image(camera, 300, 160, 280, 340);
   
@@ -287,3 +309,62 @@ function healthBar(a, b, c, d) {
 function instruct(){
   alert("Welcome!\n 1. Place hand in front of the camera to make your move. \n 2. Camera predicts your move when the timer reaches to 0. \n 3.You compete against the computer. \n 4. 2 out of 3 wins");
 }
+
+
+
+
+function startScreen(){
+  startButton();
+  questFunc();
+  textSize(32);
+  paperFunc();
+  scissorsFunc();
+  rockFunc();
+  //713, 384 is center
+  reset();
+  }
+
+function rockFunc() {
+  //rock font title
+  fill(255, 255, 255);
+  rotate(-42 / 30.8);
+  text('Rock', 420, 500);
+}
+
+function paperFunc() {
+  fill(255, 255, 255);
+  text('Paper', 713, 144);
+}
+
+function scissorsFunc() {
+  //scissors font title
+  rotate(PI / 4);
+  text('Scissors', 680, -480);
+}
+
+function questFunc() {
+  fill('red');
+  textSize(64);
+  text('Quest', 668, 264);
+}
+
+function startButton() {
+  fill('red');
+  stroke('red');
+  ellipse(755, 490, 360, 100);
+  fill('white');
+  text('Press Start to Play', 625, 500);
+}
+
+function reset(){
+	  score=0;
+  	speed=2;
+  	y=-20;
+}
+function mousePressed(){
+	if(screen==0){
+  	screen=1
+  }
+}
+
+
