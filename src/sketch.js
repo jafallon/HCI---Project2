@@ -154,7 +154,8 @@ function gotResults(error, results) {
       userSelectedRPS = label;
 
       // Generate a random value
-      const rps = Math.random(getRandomInt(3))
+      const rps = Math.floor(Math.random() * 3);
+      console.log("AI select: ",rps);
       if (rps == 0) {
         computerSelectedRPS = "rock";
       } else if (rps == 1) {
@@ -332,7 +333,7 @@ function gameOn()
 
       }
       text(countdown, 200, height / 2)
-      // text(secondEmoji, 96, 40)
+      text(secondEmoji, 96, 40)
     }
 
     /*
@@ -423,33 +424,6 @@ function gameOn()
 
 }
 
-/*
-function readScore(a, b){
-  
-  if( a == 0 ){
-    UhealthBar(60, 690, 0, 20);
-  }
-  if( a == 1 ){
-    UhealthBar(60, 690, 40, 20);
-  }
-  if( a == 2 ){
-    UhealthBar(60, 690, 80, 20);
-  }
-  if( b == 2){
-    ChealthBar(1252, 690, 80, 20);
-  }
-  if( b == 1){
-    ChealthBar(1252, 690, 40, 20);
-  }
-  if(b == 0){
-    ChealthBar(1252, 690, 0, 20);
-  }
-  else{
-    // Continue game
-  }
-
-}
-*/
 
 function menuShape(a, b, c, d) {
   noFill();
