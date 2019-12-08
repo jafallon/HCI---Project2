@@ -1,3 +1,20 @@
+// The video
+let video;
+// For displaying the label
+let label = "please wait...";
+// The classifier
+let classifier;
+let modelURL = 'https://teachablemachine.withgoogle.com/models/PMab4k9l/';
+let userSelectedRPS;
+let computerSelectedRPS = null;
+let finalResult;
+let rpsResult;
+let countdown = 5;
+let countdownStarted = false;
+
+let countdownTimer;
+
+
 let img;
 let capture;
 let camera;
@@ -18,123 +35,136 @@ let UserPick;
 
 let count = 5;
 
-function preload(){
-  predict = ml5.imageClassifier(model.json);  // 'https://teachablemachine.withgoogle.com/models/PMab4k9l/model.json'
-
+// STEP 1: Load the model!
+function preload() {
+  classifier = ml5.imageClassifier(modelURL + 'model.json');
 }
-
 
 function setup() {
   createCanvas(1425, 768);
-  img = loadImage('images/brick-bg (1).jpg');
-  camera = createCapture(VIDEO);
-  camera.hide();
-  //camera = createCapture(VIDEO);
-  //camera.size(320, 240);
+  // Create the video
+  video = createCapture(VIDEO);
+  video.hide();
 
-  predictVideo();
-
+  classifyVideo();
 }
 
-function predictVideo(){
-  predict.classify(camera, prediction)
+function classifyVideo() {
+  classifier.classify(video, gotResults);
 }
 
-function derRPSRes(){
-}
-
-function determineRPS(){
-
-  // Game logic
-
-  // User Rock
-  if(UserPick == "rock"){
-    if(CPUPick == "scissors"){
-      return win;
-    }
-    if(CPUPick == "paper"){
-      return lose;
-    }
-    else{
-      return draw;
-    }
-  }
-  
-  // User Scissors
-  if(UserPick == "scissors"){
-    if(CPUPick == "paper"){
-      return win;
-    }
-    if(CPUPick == "rock"){
-      return lose;
-    }
-    else{
-      return draw;
-    }
-  }
-
-  // User Paper
-  if(UserPick == "paper"){
-    if(CPUPick == "rock"){
-      return win;
-    }
-    if(CPUPick == "scissors"){
-      return lose;
-    }
-    else{
-      return draw;
-    }
-  }
-}
-
-
-function prediction(results){
-  // Countdown here
-
-  if(!finalRes){
-    label = results[0].label;
-  }
-
-  count = 0;  // Temp
-  
-  if(count == 0){
-
-    UserPick = label;
+function rpsEmoji(label) {
+  if (label == "rock") {
+    score = "rock"
     
-
-    tem = determineRPS();
-
-
-
+  } else if (label == "paper") {
+    score = "paper"
+  } else if (label == "scissors") {
+    score = "scissors";
+  } else {
+    score = "";
   }
-  predictVideo();
+
+  return score
 }
+
+function determineRpsResult() {
+  if (userSelectedRPS == computerSelectedRPS) {
+    return "😐" // tie
+  }
+
+  const victory = "🥳";
+  const defeat = "😞";
+  if (userSelectedRPS == "rock") {
+    if (computerSelectedRPS == "scissors") {
+      return victory;
+    } else {
+      return defeat;
+    }
+  } else if (userSelectedRPS == "paper") {
+    if (computerSelectedRPS == "rock") {
+      return victory;
+    } else {
+      return defeat;
+    }
+  } else if (userSelectedRPS == "scissors") {
+    if (computerSelectedRPS == "paper") {
+      return victory;
+    } else {
+      return defeat;
+    }
+  }
+}
+
+function decrementCountdown() {
+  countdown--
+  if (countdown == -1) {
+    clearInterval(countdownTimer)
+  }
+}
+
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+
+function gotResults(error, results) {
+  // Something went wrong!
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  if (!countdownStarted) {
+    // Start a countdown
+    countdownStarted = true;
+    countdownTimer = setInterval(decrementCountdown, 1000);
+  }
+  // Store the label and classify again!
+  if (!finalResult) {
+    label = results[0].label;
+
+    // Record what the user selected if they got to a countdown of zero
+    if (countdown == 0) {
+      userSelectedRPS = label;
+
+      // Generate a random value
+      const rps = Math.random(getRandomInt(3))
+      if (rps == 0) {
+        computerSelectedRPS = "rock";
+      } else if (rps == 1) {
+        computerSelectedRPS = "paper";
+      } else {
+        computerSelectedRPS = "scissors";
+      }
+
+      finalResult = determineRpsResult();
+    }
+    classifyVideo();
+  }
+}
+
+
+
+
+  
 
 
 function draw() {
   background(60,60,60);
-  image(img, 0, 0, 1235, 768);
 
-  image(camera, 300, 160, 280, 340);
+  // Draw the video
+  image(video, 300, 160, 280, 340);
+
+    //image(img, 0, 0, 800, 600);
+
+  //image(camera, 300, 160, 280, 340);
   
   boxIcon(510, 40, 135, 30);
   boxIcon(510, 70, 135, 30);
-
-  icon('Score='+score, 520, 60, 20);
-  icon('CPU Score='+cpuscore, 515, 90, 20);
-
-  fill(255);
-  text("score = " + score, 500,50);
   
-  textSize(75);
-  text(timer, width/3, height/3);
-  
-  if (frameCount % 60 == 0 && timer > 0) { 
-    timer --;
-  }
-  if (timer == 0) {
-    text("DETECTED", width/2, height*0.5);
-  }
+    
   
   button = createImg('https://i.imgur.com/j71bxyg.png');
   button.position(1330,50);
@@ -178,6 +208,55 @@ function draw() {
   //health for Player 2
   icon('Health', 1280, 660, 20);
   healthBar(1252, 690, 120, 20);
+
+  icon('Score='+score, 520, 60, 20);
+  icon('CPU Score='+cpuscore, 515, 90, 20);
+  fill(255);
+  text("score = " + score, 500,50);
+  
+  textSize(75);
+  // Pick an emoji
+  let emoji = rpsEmoji(!finalResult ? label : userSelectedRPS);
+
+  // Draw the emoji
+  textAlign(CENTER, CENTER);
+  fill(255);
+  textSize(128);
+  text(emoji, 96, 128);
+
+  // Draw the countdown, but only if it's started
+  if (countdownStarted) {
+    let secondEmoji = ""
+    if (computerSelectedRPS == null) {
+      secondEmoji = countdown
+    } else {
+      secondEmoji = rpsEmoji(computerSelectedRPS)
+
+    }
+    text(secondEmoji, 96, height / 2)
+  }
+
+  if (finalResult) {
+    text(finalResult, 96, height - 96)
+  }
+
+  textSize(32);
+
+  if (finalResult) {
+    switch (finalResult) {
+      case "🥳":
+        label = "victory!";
+        break;
+      case "😞":
+        label = "defeat";
+        break;
+      default:
+        label = "tie";
+    }
+  }
+  text(label, width / 2, height - 16);
+  
+
 }
 
 function menuShape(a, b, c, d) {
