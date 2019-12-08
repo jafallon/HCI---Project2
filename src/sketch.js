@@ -26,6 +26,9 @@ let tem;
 var score= 0;
 var cpuscore= 0;
 
+let Uhealth = 3;
+let AIhealth =3;
+
 let winIMG; // = loadImage("Path");
 let loseIMG; // = loadImage("Path");
 let drawIMG; // = loadImage("Path");
@@ -79,11 +82,11 @@ function rpsEmoji(label) {
 
 function determineRpsResult() {
   if (userSelectedRPS == computerSelectedRPS) {
-    return "😐" // tie
+    return "tie" // tie
   }
 
-  const victory = "🥳";
-  const defeat = "😞";
+  const victory = "victory";
+  const defeat = "loss";
   if (userSelectedRPS == "rock") {
     if (computerSelectedRPS == "scissors") {
       return victory;
@@ -259,24 +262,25 @@ function gameOn()
   }
 
   if (finalResult) {
-    text(finalResult, 96, height - 96)
+    textSize(32);
+    text(finalResult, width / 2, height - 16)
   }
 
-  textSize(32);
+  
 
   if (finalResult) {
     switch (finalResult) {
-      case "🥳":
+      case "victory":
         label = "victory!";
         break;
-      case "😞":
+      case "defeat":
         label = "defeat";
         break;
       default:
         label = "tie";
     }
   }
-  text(label, width / 2, height - 16);
+  
   
 
 }
@@ -366,5 +370,3 @@ function mousePressed(){
   	screen=1
   }
 }
-
-
