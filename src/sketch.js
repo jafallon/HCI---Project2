@@ -18,6 +18,9 @@ let begin = true;
 let uscore = 3;
 let cscore =3;
 
+let win = false;
+let lose = false;
+
 
 let img;
 let capture;
@@ -120,6 +123,7 @@ function decrementCountdown() {
     clearInterval(countdownTimer)
   }
 }
+
 
 
 function getRandomInt(max) {
@@ -227,13 +231,30 @@ function gameOn()
   icon('Paper', 407, 690, 20);
   icon('Scissors', 565, 690, 20);
 
+  console.log("User Score: ",uscore);
+  console.log("CPU Score: ",cscore);
+  
+  
   //health for User
   icon('Health', 90, 660, 20);
   fill('grey');
   rect(60, 690, 120, 20);
-  UhealthBar(60, 690, 120, 20);
   
-  
+  if(uscore == 3){
+    UhealthBar(60, 690, 120, 20);
+  }
+  if(uscore == 2){
+    UhealthBar(60, 690, 80, 20);
+  }  
+  if(uscore == 1){
+    UhealthBar(60, 690, 40, 20);
+  }  
+  if(uscore == 0){
+    UhealthBar(60, 690, 0, 20);
+    lose = true;
+    // User Loses, trigger lose message
+    
+  }
   
 
   //all the box icons for player 2
@@ -251,8 +272,32 @@ function gameOn()
   fill('grey');
   rect(1252, 690, 120, 20);
   
-
-  ChealthBar(1252, 690, 120, 20);
+  
+  if(cscore == 3){
+    ChealthBar(1252, 690, 120, 20);
+  }
+  
+  if(cscore == 2){
+    ChealthBar(1252, 690, 80, 20);
+  }
+  if(cscore == 1){
+    ChealthBar(1252, 690, 40, 20);
+  }
+  if(cscore == 0){
+    ChealthBar(1252, 690, 0, 20);
+    win = true;
+  }
+  
+  // Reset statement
+  if(win == true){
+    uscore = 3;
+    cscore = 3;
+  }
+  if(lose == true){
+    uscore = 3;
+    cscore = 3;
+  }
+    
 
   icon('Score='+temcpuscore, 520, 60, 20);
   icon('CPU Score='+temscore, 515, 90, 20);
@@ -301,17 +346,26 @@ function gameOn()
       switch (finalResult) {
         case "victory":
           label = "victory!";
-          Ctemx = Ctemx- 40;
+         // Ctemx = Ctemx- 40;
           cscore = cscore -1;
-
-          ChealthBar(60, 690, 80, 20);
+          if(cscore == 0){
+            uscore = 3;
+          }
+          else{
+          }
+          //readScore(uscore,cscore);
           finalResult = null;
           break;
         case "loss":
           label = "loss";
-          Utemx = Utemx-40;
+          //Utemx = Utemx-40;
           uscore = uscore -1;
-          UhealthBar(60, 690, 80, 20);
+          if(uscore == 0){
+            cscore = 3;
+          }
+          else{
+          }
+          //readScore(uscore,cscore);
           finalResult = null;
           
           break;
@@ -340,11 +394,13 @@ function gameOn()
     if(uscore == 0){
       // User wins
       temscore = temscore+1;
+      ChealthBar(1252, 690, 120, 20);
       uscore = 3;
       
     }
     if(cscore == 0){
       // User loses
+      UhealthBar(1252, 690, 120, 20);
       temcpuscore = temcpuscore+1;
       cscore =3;
       
@@ -367,7 +423,7 @@ function gameOn()
 
 }
 
-
+/*
 function readScore(a, b){
   
   if( a == 0 ){
@@ -393,7 +449,7 @@ function readScore(a, b){
   }
 
 }
-
+*/
 
 function menuShape(a, b, c, d) {
   noFill();
