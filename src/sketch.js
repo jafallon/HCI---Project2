@@ -182,9 +182,6 @@ function gameOn()
   // Draw the video
   image(video, 300, 160, 280, 340);
 
-   // image(img, 0, 0, 800, 600);
-
-  //image(camera, 300, 160, 280, 340);
   
   boxIcon(510, 40, 135, 30);
   boxIcon(510, 70, 135, 30);
@@ -198,6 +195,8 @@ function gameOn()
   instruction = createImg('https://i.imgur.com/KiYAJ1K.png');
   instruction.position(1300,50); document.getElementById("instruction").addEventListener("click",instruct);
   instruction.mousePressed(instruct);
+  
+    let emoji = rpsEmoji(!finalResult ? label : userSelectedRPS);
 
   //menu boxes
   menuShape(40, 635, 1352, 100);
@@ -218,6 +217,8 @@ function gameOn()
 
   //health for Player 1
   icon('Health', 90, 660, 20);
+  fill('grey');
+  rect(60, 690, 120, 20);
   healthBar(60, 690, 120, 20);
 
   //all the box icons for player 2
@@ -232,7 +233,10 @@ function gameOn()
 
   //health for Player 2
   icon('Health', 1280, 660, 20);
-  healthBar(1252, 690, 120, 20);
+  fill('grey');
+  rect(1252, 690, 120, 20);
+
+  healthBar(1252, 690, 80, 20);
 
   icon('Score='+score, 520, 60, 20);
   icon('CPU Score='+cpuscore, 515, 90, 20);
@@ -241,7 +245,7 @@ function gameOn()
   
   textSize(75);
   // Pick an emoji
-  let emoji = rpsEmoji(!finalResult ? label : userSelectedRPS);
+
 
   // Draw the emoji
   textAlign(CENTER, CENTER);
@@ -304,7 +308,7 @@ function icon(a, b, c, d) {
 }
 
 function healthBar(a, b, c, d) {
-  noFill();
+  fill('green');
   stroke('white');
   rect(a, b, c, d);
 }
