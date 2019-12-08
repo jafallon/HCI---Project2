@@ -19,7 +19,7 @@ let UserPick;
 let count = 5;
 
 function preload(){
-  predict = ml5.imageClassifier(model.json);
+  predict = ml5.imageClassifier(model.json);  // 'https://teachablemachine.withgoogle.com/models/PMab4k9l/model.json'
 
 }
 
@@ -103,6 +103,8 @@ function prediction(results){
     
 
     tem = determineRPS();
+
+
 
   }
   predictVideo();
