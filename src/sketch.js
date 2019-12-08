@@ -411,6 +411,13 @@ function gameOn()
     
   }
   
+  if(temscore == 3){
+    won();
+  }
+  
+  if(temcpuscore == 3){
+    lost();
+  }
     
   
   
@@ -453,6 +460,23 @@ function ChealthBar(a, b, c, d) {
   fill('green');
   stroke('white');
   rect(a, b, c, d);
+}
+
+function lost(){
+  fill('red');
+  stroke('black')
+  rect(755, 490, 600, 700);
+  textSize(100);
+  text('You Win!', 420, 500);
+}
+
+function won(){
+  fill('red');
+  stroke('black')
+  rect(755, 490, 600, 700);
+  textSize(100);
+  text('You lose!', 420, 500);
+  
 }
 
 
