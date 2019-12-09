@@ -13,4 +13,6 @@ Functionalities:
 - Health bar, move count down, score display.
 - NPC opponent chooses move randomly.
 
+![]()
+
 https://github.com/jafallon/HCI---Project2/blob/master/final.gif
