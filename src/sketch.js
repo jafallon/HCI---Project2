@@ -184,7 +184,7 @@ function gameOn() {
   image(img, 0, 0, 1435, 768);
 
   // Draw the video
-  image(video, 300, 160, 280, 340);
+  image(video, 200, 165, 280, 340);
 
   boxIcon(624, 40, 195, 30);
   boxIcon(624, 70, 195, 30);
@@ -307,7 +307,7 @@ function gameOn() {
   let emoji = rpsEmoji(!finalResult ? label : userSelectedRPS);
   textSize(75);
   
-  text(emoji, 96, 128);
+  // text(emoji, 96, 128);
 
   // Draw the countdown, but only if it's started
   if (countdownStarted) {
@@ -321,14 +321,14 @@ function gameOn() {
     fill(255);
     text(countdown, 726, height / 4.3);
     temem = secondEmoji;
-    text(secondEmoji, 96, 40);
+    //text(secondEmoji, 96, 40);
   }
 
 
    if(temem == "rock"){
      
-    button = createImg('https://i.imgur.com/mgS6gVG.png');
-button.position(942,340);    
+    button = createImg('https://i.imgur.com/hjZPD4a.png');
+button.position(942,200);    
     boxFill(772, 647, 80, 80, '#ad1845');
     textSize(20);
     icon('Rock', 810, 690);     
@@ -336,16 +336,16 @@ button.position(942,340);
 
   if(temem == "paper"){
 
-     button = createImg('https://i.imgur.com/zhmIO0N.png');
-button.position(942,340); 
+     button = createImg('https://i.imgur.com/WK6HQ98.png');
+button.position(942,200); 
     boxFill(942, 647, 80, 80, 'yellow');
     textSize(20);
     icon('Paper', 980, 690);     
   }
 
   if(temem == "scissors"){
-     button = createImg('https://i.imgur.com/YiE8mxz.png');
-button.position(942,340); 
+     button = createImg('https://i.imgur.com/1qyGBOP.png');
+button.position(942,200); 
     boxFill(1126, 647, 80, 80, '#add8e6');
     textSize(20);
     icon('Scissors', 1166, 690);     
@@ -475,7 +475,6 @@ function lost(){
   fill('red');
   stroke('black')
   rect(755, 490, 600, 700);
-  textSize(100);
   text('You Win!', 420, 500);
   setTimeout(lost(), 1000);
 }
@@ -483,7 +482,6 @@ function lost(){
 function won(){
   fill('red');
   stroke('black')
-  rect(755, 490, 600, 700);
   textSize(100);
   text('You lose!', 420, 500);
   setTimeout(won(), 1000);
