@@ -12,6 +12,9 @@ let rpsResult;
 let countdown = 5;
 let countdownStarted = false;
 
+var victorysound;
+var defeatsound;
+
 let countdownTimer;
 let temem;
 
@@ -54,6 +57,8 @@ var x = 200;
 
 // STEP 1: Load the model!
 function preload() {
+  victorysound = loadSound('announcer_victory.mp3');
+  defeatsound = loadSound('failure.mp3');
   classifier = ml5.imageClassifier(modelURL + 'model.json');
 }
 
@@ -472,18 +477,22 @@ function ChealthBar(a, b, c, d) {
 
 
 function lost(){
+  //victorysound.play();
   fill('red');
   stroke('black')
   rect(755, 490, 600, 700);
   text('You Win!', 420, 500);
+  //victorysound.stop();
   setTimeout(lost(), 1000);
 }
 
 function won(){
+  //defeatsound.play();
   fill('red');
   stroke('black')
   textSize(100);
   text('You lose!', 420, 500);
+  //defeatsound.stop();
   setTimeout(won(), 1000);
 }
 
