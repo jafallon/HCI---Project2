@@ -74,19 +74,12 @@ function rpsEmoji(label) {
   if (label == 'rock') {
     score = 'rock';
     //textSize(20);
-    boxFill(222, 647, 80, 80, '#ad1845');
-    textSize(20);
-    icon('Rock', 260, 690);
+ 
   } else if (label == 'paper') {
     score = 'paper';
-    boxFill(392, 647, 80, 80, 'yellow');
-    textSize(20);
-    icon('Paper', 430, 690);
   } else if (label == 'scissors') {
     score = 'scissors';
-    boxFill(562, 647, 80, 80, '#add8e6');
-    textSize(20);
-    icon('Scissors', 603, 690);
+
   } else {
     score = '';
   }
@@ -335,6 +328,25 @@ function gameOn() {
     }
     */
 
+  if(emoji == "rock"){
+    boxFill(222, 647, 80, 80, '#ad1845');
+    textSize(20);
+    icon('Rock', 260, 690);     
+  }
+
+  if(emoji == "paper"){
+
+    boxFill(392, 647, 80, 80, 'yellow');
+    textSize(20);
+    icon('Paper', 430, 690);     
+  }
+
+  if(emoji == "scissors"){
+    boxFill(562, 647, 80, 80, '#add8e6');
+    textSize(20);
+    icon('Scissors', 603, 690);    
+  }
+  
   if (finalResult) {
     switch (finalResult) {
       case 'victory':
