@@ -329,24 +329,32 @@ function gameOn() {
     if (finalResult) {
       
     }
+    
+
+  textSize(20);
+  icon('Paper', 980, 690);
+  textSize(20);
+  icon('Scissors', 1166, 690);
+
+
     */
   if(temem == "rock"){
-    boxFill(222, 647, 80, 80, '#ad1845');
+    boxFill(772, 647, 80, 80,'#ad1845');
     textSize(20);
-    icon('Rock', 260, 690);     
+    icon('Rock', 810, 690);   
   }
 
-  if(temem= "paper"){
+  if(temem == "paper"){
 
-    boxFill(392, 647, 80, 80, 'yellow');
+    boxFill(942, 647, 80, 80,'yellow');
     textSize(20);
-    icon('Paper', 430, 690);     
+    icon('Paper', 960, 690);     
   }
 
   if(temem == "scissors"){
-    boxFill(562, 647, 80, 80, '#add8e6');
+    boxFill(1126, 647, 80, 80, '#add8e6');
     textSize(20);
-    icon('Scissors', 603, 690);    
+    icon('Scissors', 1166, 690);    
   }
   if(emoji == "rock"){
     boxFill(222, 647, 80, 80, '#ad1845');
