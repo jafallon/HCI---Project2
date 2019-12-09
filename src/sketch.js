@@ -282,9 +282,9 @@ function gameOn() {
   }
 
   textSize(20);
-  icon('User Score=' + score, 720, 60);
+  icon('User Score=' + temscore, 720, 60);
   textSize(20);
-  icon('CPU Score=' + cpuscore, 720, 90);
+  icon('CPU Score=' + temcpuscore, 720, 90);
   fill(255);
   // text("score = " + score, 500,50);
 
@@ -377,11 +377,15 @@ function gameOn() {
   }
 
   if (temscore == 3) {
-    won();
+    temcpuscore = 0;
+    tempscore = 0;
+    lost();
   }
 
   if (temcpuscore == 3) {
-    lost();
+    temcpuscore = 0;
+    tempscore = 0;
+    won();
   }
 
   if (countdown == 0) {
@@ -418,29 +422,34 @@ function ChealthBar(a, b, c, d) {
   rect(a, b, c, d);
 }
 
-function lost() {
+
+function lost(){
   fill('red');
-  stroke('black');
+  stroke('black')
   rect(755, 490, 600, 700);
   textSize(100);
   text('You Win!', 420, 500);
+  setTimeout(lost(), 1000);
 }
 
-function won() {
+function won(){
   fill('red');
-  stroke('black');
+  stroke('black')
   rect(755, 490, 600, 700);
   textSize(100);
   text('You lose!', 420, 500);
+  setTimeout(won(), 1000);
 }
 
-function instruct() {
-  alert(
-    'Welcome!\n 1. Place hand in front of the camera to make your move. \n 2. Camera predicts your move when the timer reaches to 0. \n 3.You compete against the computer. \n 4. 2 out of 3 wins'
-  );
+
+function instruct(){
+  alert("Welcome!\n 1. Place hand in front of the camera to make your move. \n 2. Camera predicts your move when the timer reaches to 0. \n 3.You compete against the computer. \n 4. 2 out of 3 wins");
 }
 
-function startScreen() {
+
+
+
+function startScreen(){
   startButton();
   questFunc();
   textSize(32);
@@ -449,7 +458,7 @@ function startScreen() {
   rockFunc();
   //713, 384 is center
   reset();
-}
+  }
 
 function rockFunc() {
   //rock font title
@@ -483,13 +492,13 @@ function startButton() {
   text('Press Start to Play', 625, 500);
 }
 
-function reset() {
-  score = 0;
-  speed = 2;
-  y = -20;
+function reset(){
+	  score=0;
+  	speed=2;
+  	y=-20;
 }
-function mousePressed() {
-  if (screen == 0) {
-    screen = 1;
+function mousePressed(){
+	if(screen==0){
+  	screen=1
   }
 }
