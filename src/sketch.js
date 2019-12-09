@@ -73,16 +73,27 @@ function classifyVideo() {
 function rpsEmoji(label) {
   if (label == 'rock') {
     score = 'rock';
+    //textSize(20);
+    boxFill(222, 647, 80, 80, '#ad1845');
+    textSize(20);
+    icon('Rock', 260, 690);
   } else if (label == 'paper') {
     score = 'paper';
+    boxFill(392, 647, 80, 80, 'yellow');
+    textSize(20);
+    icon('Paper', 430, 690);
   } else if (label == 'scissors') {
     score = 'scissors';
+    boxFill(562, 647, 80, 80, '#add8e6');
+    textSize(20);
+    icon('Scissors', 603, 690);
   } else {
     score = '';
   }
 
   return score;
 }
+
 
 function determineRpsResult() {
   if (userSelectedRPS == computerSelectedRPS) {
@@ -282,9 +293,9 @@ function gameOn() {
   }
 
   textSize(20);
-  icon('User Score=' + temscore, 720, 60);
+  icon('User Score=' + temcpuscore, 720, 60);
   textSize(20);
-  icon('CPU Score=' + temcpuscore, 720, 90);
+  icon('CPU Score=' + temscore, 720, 90);
   fill(255);
   // text("score = " + score, 500,50);
 
@@ -298,8 +309,10 @@ function gameOn() {
 
   //let i;
   // for(i = 0; i <1; i++){
-
+  
   let emoji = rpsEmoji(!finalResult ? label : userSelectedRPS);
+  textSize(75);
+  
   text(emoji, 96, 128);
 
   // Draw the countdown, but only if it's started
@@ -439,6 +452,12 @@ function won(){
   textSize(100);
   text('You lose!', 420, 500);
   setTimeout(won(), 1000);
+}
+
+function boxFill(a,b,c,d,e) {
+  fill(e);
+  stroke('white');
+  rect(a, b, c, d);
 }
 
 
