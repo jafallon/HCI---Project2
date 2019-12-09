@@ -338,24 +338,22 @@ function gameOn() {
 
 
     */
-  if(temem == "rock"){
-    boxFill(772, 647, 80, 80,'#ad1845');
-    textSize(20);
-    icon('Rock', 810, 690);   
+   if(temem == "rock"){
+    button = createImg('https://i.imgur.com/mgS6gVG.png');
+button.position(560,470);    
   }
 
   if(temem == "paper"){
 
-    boxFill(942, 647, 80, 80,'yellow');
-    textSize(20);
-    icon('Paper', 960, 690);     
+     button = createImg('https://i.imgur.com/zhmIO0N.png');
+button.position(560,470);       
   }
 
   if(temem == "scissors"){
-    boxFill(1126, 647, 80, 80, '#add8e6');
-    textSize(20);
-    icon('Scissors', 1166, 690);    
+     button = createImg('https://i.imgur.com/YiE8mxz.png');
+button.position(560,470);     
   }
+	
   if(emoji == "rock"){
     boxFill(222, 647, 80, 80, '#ad1845');
     textSize(20);
