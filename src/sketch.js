@@ -1,7 +1,7 @@
 // The video
 let video;
 // For displaying the label
-let label = "please wait...";
+let label = 'please wait...';
 // The classifier
 let classifier;
 let modelURL = 'https://teachablemachine.withgoogle.com/models/PMab4k9l/';
@@ -16,26 +16,24 @@ let countdownTimer;
 
 let begin = true;
 let uscore = 3;
-let cscore =3;
+let cscore = 3;
 
 let win = false;
 let lose = false;
 
-
 let img;
 let capture;
 let camera;
-let load = "Loading...";
+let load = 'Loading...';
 let predict;
 let model;
 let timer = 10;
 let tem;
-var score= 0;
-var cpuscore= 0;
+var score = 0;
+var cpuscore = 0;
 
-let temscore =0;
+let temscore = 0;
 let temcpuscore = 0;
-
 
 let winIMG; // = loadImage("Path");
 let loseIMG; // = loadImage("Path");
@@ -49,10 +47,9 @@ let count = 5;
 var Utemx = 120;
 var Ctemx = 120;
 
-
 var screen = 0;
-var y=-20;
-var x=200;
+var y = -20;
+var x = 200;
 
 // STEP 1: Load the model!
 function preload() {
@@ -67,7 +64,6 @@ function setup() {
   video.hide();
 
   classifyVideo();
-  
 }
 
 function classifyVideo() {
@@ -75,41 +71,40 @@ function classifyVideo() {
 }
 
 function rpsEmoji(label) {
-  if (label == "rock") {
-    score = "rock"
-    
-  } else if (label == "paper") {
-    score = "paper"
-  } else if (label == "scissors") {
-    score = "scissors";
+  if (label == 'rock') {
+    score = 'rock';
+  } else if (label == 'paper') {
+    score = 'paper';
+  } else if (label == 'scissors') {
+    score = 'scissors';
   } else {
-    score = "";
+    score = '';
   }
 
-  return score
+  return score;
 }
 
 function determineRpsResult() {
   if (userSelectedRPS == computerSelectedRPS) {
-    return "tie" // tie
+    return 'tie'; // tie
   }
 
-  const victory = "victory";
-  const defeat = "loss";
-  if (userSelectedRPS == "rock") {
-    if (computerSelectedRPS == "scissors") {
+  const victory = 'victory';
+  const defeat = 'loss';
+  if (userSelectedRPS == 'rock') {
+    if (computerSelectedRPS == 'scissors') {
       return victory;
     } else {
       return defeat;
     }
-  } else if (userSelectedRPS == "paper") {
-    if (computerSelectedRPS == "rock") {
+  } else if (userSelectedRPS == 'paper') {
+    if (computerSelectedRPS == 'rock') {
       return victory;
     } else {
       return defeat;
     }
-  } else if (userSelectedRPS == "scissors") {
-    if (computerSelectedRPS == "paper") {
+  } else if (userSelectedRPS == 'scissors') {
+    if (computerSelectedRPS == 'paper') {
       return victory;
     } else {
       return defeat;
@@ -118,18 +113,15 @@ function determineRpsResult() {
 }
 
 function decrementCountdown() {
-  countdown--
+  countdown--;
   if (countdown == -1) {
-    clearInterval(countdownTimer)
+    clearInterval(countdownTimer);
   }
 }
-
-
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
-
 
 function gotResults(error, results) {
   // Something went wrong!
@@ -144,7 +136,7 @@ function gotResults(error, results) {
     countdownTimer = setInterval(decrementCountdown, 1000);
   }
   // Store the label and classify again!
-  
+
   // finalResult = null;
   if (!finalResult) {
     label = results[0].label;
@@ -155,65 +147,51 @@ function gotResults(error, results) {
 
       // Generate a random value
       const rps = Math.floor(Math.random() * 3);
-      console.log("AI select: ",rps);
+      console.log('AI select: ', rps);
       if (rps == 0) {
-        computerSelectedRPS = "rock";
+        computerSelectedRPS = 'rock';
       } else if (rps == 1) {
-        computerSelectedRPS = "paper";
+        computerSelectedRPS = 'paper';
       } else {
-        computerSelectedRPS = "scissors";
+        computerSelectedRPS = 'scissors';
       }
-      
 
       finalResult = determineRpsResult();
       countdown = 5;
     }
-    
-    
+
     classifyVideo();
   }
 }
 
-
-
-
-  
-
-
-
 function draw() {
-    image(img, 0, 0, 1435, 768);
+  image(img, 0, 0, 1435, 768);
 
-  if(screen == 0){
-    startScreen()
-  }else if(screen == 1){
-  	gameOn()
+  if (screen == 0) {
+    startScreen();
+  } else if (screen == 1) {
+    gameOn();
   }
 }
 
-
-function gameOn()
-{
- // background(60,60,60);
+function gameOn() {
+  // background(60,60,60);
   image(img, 0, 0, 1435, 768);
 
   // Draw the video
   image(video, 300, 160, 280, 340);
 
-  
-  boxIcon(510, 40, 135, 30);
-  boxIcon(510, 70, 135, 30);
-  
-    
-  
+  boxIcon(624, 40, 195, 30);
+  boxIcon(624, 70, 195, 30);
+
   button = createImg('https://i.imgur.com/j71bxyg.png');
-  button.position(1330,50);
+  button.position(1330, 50);
   //button.mousePressed(settings);
-  
+
   instruction = createImg('https://i.imgur.com/KiYAJ1K.png');
-  instruction.position(1300,50); document.getElementById("instruction").addEventListener("click",instruct);
+  instruction.position(1300, 50);
+  document.getElementById('instruction').addEventListener('click', instruct);
   instruction.mousePressed(instruct);
-  
 
   //menu boxes
   menuShape(40, 635, 1352, 100);
@@ -228,35 +206,36 @@ function gameOn()
   boxIcon(562, 647, 80, 80);
 
   //all the texts for the box icons for player 1
-  icon('Rock', 240, 690, 20);
-  icon('Paper', 407, 690, 20);
-  icon('Scissors', 565, 690, 20);
+  textSize(20);
+  icon('Rock', 260, 690);
+  textSize(20);
+  icon('Paper', 430, 690);
+  textSize(20);
+  icon('Scissors', 603, 690);
 
-  console.log("User Score: ",uscore);
-  console.log("CPU Score: ",cscore);
-  
-  
+  console.log('User Score: ', uscore);
+  console.log('CPU Score: ', cscore);
+
   //health for User
-  icon('Health', 90, 660, 20);
+  textSize(20);
+  icon('Health', 120, 660);
   fill('grey');
   rect(60, 690, 120, 20);
-  
-  if(uscore == 3){
+
+  if (uscore == 3) {
     UhealthBar(60, 690, 120, 20);
   }
-  if(uscore == 2){
+  if (uscore == 2) {
     UhealthBar(60, 690, 80, 20);
-  }  
-  if(uscore == 1){
+  }
+  if (uscore == 1) {
     UhealthBar(60, 690, 40, 20);
-  }  
-  if(uscore == 0){
+  }
+  if (uscore == 0) {
     UhealthBar(60, 690, 0, 20);
     lose = true;
     // User Loses, trigger lose message
-    
   }
-  
 
   //all the box icons for player 2
   boxIcon(772, 647, 80, 80);
@@ -264,173 +243,151 @@ function gameOn()
   boxIcon(1126, 647, 80, 80);
 
   //all the texts for the box icons for player 2
-  icon('Rock', 788, 690, 20);
-  icon('Paper', 955, 690, 20);
-  icon('Scissors', 1129, 690, 20);
+  textSize(20);
+  icon('Rock', 810, 690);
+  textSize(20);
+  icon('Paper', 980, 690);
+  textSize(20);
+  icon('Scissors', 1166, 690);
 
   //health for CPU
-  icon('Health', 1280, 660, 20);
+  textSize(20);
+  icon('Health', 1310, 660);
   fill('grey');
   rect(1252, 690, 120, 20);
-  
-  
-  if(cscore == 3){
+
+  if (cscore == 3) {
     ChealthBar(1252, 690, 120, 20);
   }
-  
-  if(cscore == 2){
+
+  if (cscore == 2) {
     ChealthBar(1252, 690, 80, 20);
   }
-  if(cscore == 1){
+  if (cscore == 1) {
     ChealthBar(1252, 690, 40, 20);
   }
-  if(cscore == 0){
+  if (cscore == 0) {
     ChealthBar(1252, 690, 0, 20);
     win = true;
   }
-  
-  // Reset statement
-  if(win == true){
-    uscore = 3;
-    cscore = 3;
-  }
-  if(lose == true){
-    uscore = 3;
-    cscore = 3;
-  }
-    
 
-  icon('Score='+temcpuscore, 520, 60, 20);
-  icon('CPU Score='+temscore, 515, 90, 20);
+  // Reset statement
+  if (win == true) {
+    uscore = 3;
+    cscore = 3;
+  }
+  if (lose == true) {
+    uscore = 3;
+    cscore = 3;
+  }
+
+  textSize(20);
+  icon('User Score=' + score, 720, 60);
+  textSize(20);
+  icon('CPU Score=' + cpuscore, 720, 90);
   fill(255);
   // text("score = " + score, 500,50);
-  
+
   textSize(75);
   // Pick an emoji
-
 
   // Draw the emoji
   textAlign(CENTER, CENTER);
   fill(255);
   textSize(128);
-  
+
   //let i;
- // for(i = 0; i <1; i++){
-    
-    let emoji = rpsEmoji(!finalResult ? label : userSelectedRPS);
-    text(emoji, 96, 128);
-    
+  // for(i = 0; i <1; i++){
+
+  let emoji = rpsEmoji(!finalResult ? label : userSelectedRPS);
+  text(emoji, 96, 128);
 
   // Draw the countdown, but only if it's started
-    if (countdownStarted) {
-      let secondEmoji = ""
-      if (computerSelectedRPS == null) {
-        
-        
-       // secondEmoji = countdown
-      } else {
-        secondEmoji = rpsEmoji(computerSelectedRPS)
-
-      }
-      text(countdown, 200, height / 2)
-      text(secondEmoji, 96, 40)
+  if (countdownStarted) {
+    let secondEmoji = '';
+    if (computerSelectedRPS == null) {
+      // secondEmoji = countdown
+    } else {
+      secondEmoji = rpsEmoji(computerSelectedRPS);
     }
+    boxIcon(624, 100, 195, 150); //box for timer
+    fill(255);
+    text(countdown, 726, height / 4.3);
+    text(secondEmoji, 96, 40);
+  }
 
-    /*
+  /*
     if (finalResult) {
       
     }
     */
-    
-    
-    if (finalResult) {
-      switch (finalResult) {
-        case "victory":
-          label = "victory!";
-         // Ctemx = Ctemx- 40;
-          cscore = cscore -1;
-          if(cscore == 0){
-            uscore = 3;
-          }
-          else{
-          }
-          //readScore(uscore,cscore);
-          finalResult = null;
-          break;
-        case "loss":
-          label = "loss";
-          //Utemx = Utemx-40;
-          uscore = uscore -1;
-          if(uscore == 0){
-            cscore = 3;
-          }
-          else{
-          }
-          //readScore(uscore,cscore);
-          finalResult = null;
-          
-          break;
-        case "tie":
-          label = "tie";
-        
-         finalResult = null;
-          break;
-      }
 
+  if (finalResult) {
+    switch (finalResult) {
+      case 'victory':
+        label = 'victory!';
+        // Ctemx = Ctemx- 40;
+        cscore = cscore - 1;
+        if (cscore == 0) {
+          uscore = 3;
+        } else {
+        }
+        //readScore(uscore,cscore);
+        finalResult = null;
+        break;
+      case 'loss':
+        label = 'loss';
+        //Utemx = Utemx-40;
+        uscore = uscore - 1;
+        if (uscore == 0) {
+          cscore = 3;
+        } else {
+        }
+        //readScore(uscore,cscore);
+        finalResult = null;
 
+        break;
+      case 'tie':
+        label = 'tie';
+
+        finalResult = null;
+        break;
+    }
   }
-  
-    
-  
-  
 
   textSize(32);
-  text(label, width / 2, height - 16)
-    
-  if(uscore == 0|| cscore == 0){
-    
+  text(label, width / 2, height - 16);
+
+  if (uscore == 0 || cscore == 0) {
     // End condition
     //begin = false;
-    
-    if(uscore == 0){
+
+    if (uscore == 0) {
       // User wins
-      temscore = temscore+1;
+      temscore = temscore + 1;
       ChealthBar(1252, 690, 120, 20);
       uscore = 3;
-      
     }
-    if(cscore == 0){
+    if (cscore == 0) {
       // User loses
       UhealthBar(1252, 690, 120, 20);
-      temcpuscore = temcpuscore+1;
-      cscore =3;
-      
+      temcpuscore = temcpuscore + 1;
+      cscore = 3;
     }
-    
-    
-    
   }
-  
-  if(temscore == 3){
+
+  if (temscore == 3) {
     won();
   }
-  
-  if(temcpuscore == 3){
+
+  if (temcpuscore == 3) {
     lost();
   }
-    
-  
-  
-  if(countdown == 0){
-    
+
+  if (countdown == 0) {
     emoji = rpsEmoji(!finalResult ? label : userSelectedRPS);
   }
-  
-  
-
-
 }
-
 
 function menuShape(a, b, c, d) {
   noFill();
@@ -444,10 +401,9 @@ function boxIcon(a, b, c, d) {
   rect(a, b, c, d);
 }
 
-function icon(a, b, c, d) {
+function icon(a, b, c) {
   fill('white');
   text(a, b, c);
-  textSize(d);
 }
 
 function UhealthBar(a, b, c, d) {
@@ -462,32 +418,29 @@ function ChealthBar(a, b, c, d) {
   rect(a, b, c, d);
 }
 
-function lost(){
+function lost() {
   fill('red');
-  stroke('black')
+  stroke('black');
   rect(755, 490, 600, 700);
   textSize(100);
   text('You Win!', 420, 500);
 }
 
-function won(){
+function won() {
   fill('red');
-  stroke('black')
+  stroke('black');
   rect(755, 490, 600, 700);
   textSize(100);
   text('You lose!', 420, 500);
-  
 }
 
-
-function instruct(){
-  alert("Welcome!\n 1. Place hand in front of the camera to make your move. \n 2. Camera predicts your move when the timer reaches to 0. \n 3.You compete against the computer. \n 4. 2 out of 3 wins");
+function instruct() {
+  alert(
+    'Welcome!\n 1. Place hand in front of the camera to make your move. \n 2. Camera predicts your move when the timer reaches to 0. \n 3.You compete against the computer. \n 4. 2 out of 3 wins'
+  );
 }
 
-
-
-
-function startScreen(){
+function startScreen() {
   startButton();
   questFunc();
   textSize(32);
@@ -496,7 +449,7 @@ function startScreen(){
   rockFunc();
   //713, 384 is center
   reset();
-  }
+}
 
 function rockFunc() {
   //rock font title
@@ -530,13 +483,13 @@ function startButton() {
   text('Press Start to Play', 625, 500);
 }
 
-function reset(){
-	  score=0;
-  	speed=2;
-  	y=-20;
+function reset() {
+  score = 0;
+  speed = 2;
+  y = -20;
 }
-function mousePressed(){
-	if(screen==0){
-  	screen=1
+function mousePressed() {
+  if (screen == 0) {
+    screen = 1;
   }
 }
