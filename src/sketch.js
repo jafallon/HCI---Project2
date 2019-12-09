@@ -13,6 +13,7 @@ let countdown = 5;
 let countdownStarted = false;
 
 let countdownTimer;
+let temem;
 
 let begin = true;
 let uscore = 3;
@@ -319,15 +320,34 @@ function gameOn() {
     boxIcon(624, 100, 195, 150); //box for timer
     fill(255);
     text(countdown, 726, height / 4.3);
+    temem = secondEmoji;
     text(secondEmoji, 96, 40);
   }
+
 
   /*
     if (finalResult) {
       
     }
     */
+  if(temem == "rock"){
+    boxFill(222, 647, 80, 80, '#ad1845');
+    textSize(20);
+    icon('Rock', 260, 690);     
+  }
 
+  if(temem= "paper"){
+
+    boxFill(392, 647, 80, 80, 'yellow');
+    textSize(20);
+    icon('Paper', 430, 690);     
+  }
+
+  if(temem == "scissors"){
+    boxFill(562, 647, 80, 80, '#add8e6');
+    textSize(20);
+    icon('Scissors', 603, 690);    
+  }
   if(emoji == "rock"){
     boxFill(222, 647, 80, 80, '#ad1845');
     textSize(20);
@@ -404,13 +424,13 @@ function gameOn() {
   if (temscore == 3) {
     temcpuscore = 0;
     tempscore = 0;
-    lost();
+    won();
   }
 
   if (temcpuscore == 3) {
     temcpuscore = 0;
     tempscore = 0;
-    won();
+    lost();
   }
 
   if (countdown == 0) {
