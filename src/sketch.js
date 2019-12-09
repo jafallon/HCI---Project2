@@ -516,32 +516,32 @@ function rockFunc() {
   //rock font title
   fill(255, 255, 255);
   rotate(-42 / 30.8);
-  text('Rock', 420, 500);
+  text('Rock', 360, 500);
 }
 
 function paperFunc() {
   fill(255, 255, 255);
-  text('Paper', 713, 144);
+  text('Paper', 673, 164);
 }
 
 function scissorsFunc() {
   //scissors font title
   rotate(PI / 4);
-  text('Scissors', 680, -480);
+  text('Scissors', 680, -440);
 }
 
 function questFunc() {
   fill('red');
   textSize(64);
-  text('Quest', 668, 264);
+  text('Quest', 628, 264);
 }
 
 function startButton() {
   fill('red');
   stroke('red');
-  ellipse(755, 490, 360, 100);
+  ellipse(730, 450, 360, 100);
   fill('white');
-  text('Press Start to Play', 625, 500);
+  text('Press Start to Play', 600, 455);
 }
 
 function reset(){
