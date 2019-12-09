@@ -2,13 +2,11 @@
 
 Team Members: James Fallon, Zoya Shaikh, Haroon Saeed
 
-Roles:
+The game is Rock, Paper, Scissor!
+We trained a model to detect our hand movement. The game is played against the computer. The game is played 3 times, based on the 
+result 2 out of 3 either the user or Computer wins.
 
-James Fallon - Build/train a model usingTensorFlow model for rock, paper, scissors. Implment the main gameplay.
-
-Zoya Shaikh - Develop the frontend of the game UI/ reactive stimuli. ( Top Half )
-
-Haroon Saeed - Develop the frontend of the game UI/ reactive stimuli. ( Bottom Half )
+![image](https://user-images.githubusercontent.com/45009373/69390487-fbf43480-0c94-11ea-83cc-1a78d33b09d3.png)
 
 Functionalities: 
 - Buttons change and react to diffrent stimuli.
@@ -19,6 +17,4 @@ Functionalities:
 - Health bar, move count down, score display.
 - NPC opponent chooses move randomly.
 
-
-![image](https://user-images.githubusercontent.com/45009373/69390487-fbf43480-0c94-11ea-83cc-1a78d33b09d3.png)
- 
+![](https://github.com/jafallon/HCI---Project2/blob/master/final.gif)
