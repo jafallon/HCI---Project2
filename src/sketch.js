@@ -331,6 +331,14 @@ function gameOn() {
     }
     
 
+  //all the box icons for player 2
+  boxIcon(772, 647, 80, 80);
+  boxIcon(942, 647, 80, 80);
+  boxIcon(1126, 647, 80, 80);
+
+  //all the texts for the box icons for player 2
+  textSize(20);
+  icon('Rock', 810, 690);
   textSize(20);
   icon('Paper', 980, 690);
   textSize(20);
@@ -341,17 +349,26 @@ function gameOn() {
    if(temem == "rock"){
     button = createImg('https://i.imgur.com/mgS6gVG.png');
 button.position(560,470);    
+    boxFill(772, 647, 80, 80, '#ad1845');
+    textSize(20);
+    icon('Rock', 810, 690);     
   }
 
   if(temem == "paper"){
 
      button = createImg('https://i.imgur.com/zhmIO0N.png');
-button.position(560,470);       
+button.position(560,470); 
+    boxFill(942, 647, 80, 80, 'yellow');
+    textSize(20);
+    icon('Paper', 980, 690);     
   }
 
   if(temem == "scissors"){
      button = createImg('https://i.imgur.com/YiE8mxz.png');
-button.position(560,470);     
+button.position(560,470); 
+    boxFill(1126, 647, 80, 80, '#add8e6');
+    textSize(20);
+    icon('Scissors', 1166, 690);     
   }
 	
   if(emoji == "rock"){
